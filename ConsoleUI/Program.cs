@@ -10,7 +10,11 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            // OrderTest();
+            var result = productManager.GetProductDetails();
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ProductName + " " + item.CategoryName);
+            }
         }
 
         private static void OrderTest()

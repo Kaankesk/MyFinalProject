@@ -10,10 +10,16 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
+            // OrderTest();
+        }
 
-            foreach (var item in productManager.GetAll())
+        private static void OrderTest()
+        {
+            OrderManager orderManager = new OrderManager(new EfOrderDal());
+
+            foreach (var item in orderManager.GetAllOrders())
             {
-                Console.WriteLine(item.ProductName+"-"+item.UnitPrice);
+                Console.WriteLine(item.OrderId + "-" + item.OrderDate.ToShortDateString());
             }
         }
     }

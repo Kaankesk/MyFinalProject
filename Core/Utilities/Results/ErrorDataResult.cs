@@ -13,7 +13,7 @@ namespace Core.Utilities.Results
 
         }
 
-        public ErrorDataResult(T data, bool success) : base(data, false)
+        public ErrorDataResult(T data) : base(data, false)
         {
 
         }

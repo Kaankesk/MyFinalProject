@@ -1,5 +1,7 @@
+
 using Business.Abstract;
 using Business.Concrete;
+
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
@@ -34,8 +36,8 @@ namespace WebAPI
             // Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject --> IoC Container
             // AOP
             services.AddControllers();
-            services.AddSingleton<IProductService,ProductManager>();
-            services.AddSingleton<IProductDal, EfProductDal>();
+            //services.AddSingleton<IProductService, ProductManager>();
+            //services.AddSingleton<IProductDal, EfProductDal>();
 
         }
 
@@ -58,5 +60,7 @@ namespace WebAPI
                 endpoints.MapControllers();
             });
         }
+        
+        
     }
 }

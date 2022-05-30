@@ -30,6 +30,8 @@ namespace Business.Concrete
 
         }
 
+        //Claim
+        // [SecuredOperation("admin,editor")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -31,8 +32,7 @@ namespace Business.Concrete
         }
 
         //Claim
-        [SecuredOperation("product.add,admin" +
-            "")]
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
@@ -55,27 +55,27 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
             //İş kodları 
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), true, Messages.ProductsListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),  Messages.ProductsListed);
         }
 
         public IDataResult<List<Product>> GetAllByCategory(int id)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id), true, Messages.ProductsListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id),  Messages.ProductsListed);
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId), true, Messages.ProductsListed);
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId),  Messages.ProductsListed);
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max), true, Messages.ProductsListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max), Messages.ProductsListed);
         }
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(), true, Messages.ProductsListed);
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(),  Messages.ProductsListed);
         }
 
         [ValidationAspect(typeof(ProductValidator))]

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Core.Aspects.Autofac.Caching;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -47,6 +48,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("add")]
+        [CacheRemoveAspect("IProductService.Get")]
         public IActionResult Add(Product product)
         {
             var result = _productService.Add(product);
